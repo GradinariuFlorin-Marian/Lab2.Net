@@ -49,6 +49,10 @@ namespace Lab2
             }
 
             Console.WriteLine("\t" + teamName + " " + minscore);
+            Console.WriteLine("\nDry code 1:");
+            new DryFusion("/Users/gradinariuflorin-marian/Desktop/weather.dat", "weather");
+            Console.WriteLine("\nDry code 2:");
+            new DryFusion("/Users/gradinariuflorin-marian/Desktop/football.dat", "football");
         }
 
         public static Boolean verifyNumber(String number)
@@ -58,7 +62,7 @@ namespace Lab2
                 IntegerType.FromString(number);
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
