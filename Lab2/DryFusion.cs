@@ -22,12 +22,10 @@ namespace Lab2
             if (type.Equals("weather"))
             {
                 computeData(myList, nameValue, scoreValue, 0, 1, 2, 0);
-                // weatherProgram(myList, nameValue, scoreValue);
             }
             else
             {
                 computeData(myList, nameValue, scoreValue, 8, 6, 8, 1);
-                // footballProgram(myList, nameValue, scoreValue);
             }
         }
 
@@ -55,55 +53,7 @@ namespace Lab2
 
             Console.WriteLine("\t" + nameValue + " " + scoreValue);
         }
-
-        public void weatherProgram(ArrayList myList, StringBuilder nameValue, int scoreValue)
-        {
-            foreach (string[] name in myList)
-            {
-                if (name.Length > 0)
-                {
-                    if (verifyNumber(name[0]) && verifyNumber(name[1].Replace("*", "")) &&
-                        verifyNumber(name[2].Replace("*", "")))
-                    {
-                        int max = IntegerType.FromString(name[1].Replace("*", ""));
-                        int min = IntegerType.FromString(name[2].Replace("*", ""));
-                        if ((max - min) < scoreValue)
-                        {
-                            nameValue.Clear();
-                            nameValue.Append(name[0]);
-                            scoreValue = max - min;
-                        }
-                    }
-                }
-            }
-
-            Console.WriteLine("\t" + nameValue + " " + scoreValue);
-        }
-
-        public void footballProgram(ArrayList footballList, StringBuilder nameValue, int scoreValue)
-        {
-            foreach (string[] name in footballList)
-            {
-                if (name.Length > 8)
-                {
-                    if (verifyNumber(name[6]) && verifyNumber(name[8]))
-                    {
-                        int scored = IntegerType.FromString(name[6]);
-                        int against = IntegerType.FromString(name[8]);
-                        if (Math.Abs(scored - against) < scoreValue)
-                        {
-                            nameValue.Clear();
-                            nameValue.Append(name[1]);
-                            scoreValue = Math.Abs(scored - against);
-
-                        }
-                    }
-                }
-            }
-
-            Console.WriteLine("\t" + nameValue + " " + scoreValue);
-        }
-
+        
         public Boolean verifyNumber(String number)
         {
             try

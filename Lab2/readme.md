@@ -42,7 +42,7 @@ Process finished with exit code 0.
 
 
 - Was the way you wrote the second program influenced by writing the first?
-    - Answear:
+    - Answear: Mostly, yes. We saw that some parts of the code were used twice in different methods.
 
 
 - Is factoring out as much common code as possible always a good thing? Did the readability of the programs suffer because of this requirement? How about the maintainability?
