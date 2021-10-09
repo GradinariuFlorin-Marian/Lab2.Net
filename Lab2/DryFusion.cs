@@ -11,6 +11,8 @@ namespace Lab2
         {
             string[] lines = System.IO.File.ReadAllLines(fileName);
             ArrayList myList = new ArrayList();
+            int scoreValue = Int32.MaxValue;
+            StringBuilder nameValue = new StringBuilder();
             foreach (string line in lines)
             {
                 string[] ln = line.Split((char[]) null, StringSplitOptions.RemoveEmptyEntries);
@@ -19,27 +21,40 @@ namespace Lab2
 
             if (type.Equals("weather"))
             {
-                weatherProgram(myList);
+                weatherProgram(myList, nameValue, scoreValue);
             }
             else
             {
-                footballProgram(myList);
+                footballProgram(myList, nameValue, scoreValue);
             }
         }
 
-        public void weatherProgram(ArrayList weatherList)
+        public void weatherProgram(ArrayList weatherList, StringBuilder nameValue, int scoreValue)
         {
             foreach (string[] name in weatherList)
             {
                 if (name.Length > 0)
-                    Console.WriteLine("\t" + name[0] + " " + name[2].Replace("*", ""));
+                {
+                    if (verifyNumber(name[0]) && verifyNumber(name[1].Replace("*", "")) &&
+                        verifyNumber(name[2].Replace("*", "")))
+                    {
+                        int max = IntegerType.FromString(name[1].Replace("*", ""));
+                        int min = IntegerType.FromString(name[2].Replace("*", ""));
+                        if ((max - min) < scoreValue)
+                        {
+                            nameValue.Clear();
+                            nameValue.Append(name[0]);
+                            scoreValue = max - min;
+                        }
+                    }
+                }
             }
+
+            Console.WriteLine("\t" + nameValue + " " + scoreValue);
         }
 
-        public void footballProgram(ArrayList footballList)
+        public void footballProgram(ArrayList footballList, StringBuilder nameValue, int scoreValue)
         {
-            int minscore = Int32.MinValue;
-            StringBuilder teamName = new StringBuilder();
             foreach (string[] name in footballList)
             {
                 if (name.Length > 8)
@@ -48,17 +63,17 @@ namespace Lab2
                     {
                         int scored = IntegerType.FromString(name[6]);
                         int against = IntegerType.FromString(name[8]);
-                        if ((scored - against) > minscore)
+                        if (Math.Abs(scored - against) < scoreValue)
                         {
-                            minscore = scored - against;
-                            teamName.Clear();
-                            teamName.Append(name[1]);
+                            scoreValue = Math.Abs(scored - against);
+                            nameValue.Clear();
+                            nameValue.Append(name[1]);
                         }
                     }
                 }
             }
 
-            Console.WriteLine("\t" + teamName + " " + minscore);
+            Console.WriteLine("\t" + nameValue + " " + scoreValue);
         }
 
         public Boolean verifyNumber(String number)
