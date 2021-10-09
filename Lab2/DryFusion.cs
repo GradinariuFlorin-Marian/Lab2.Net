@@ -21,17 +21,44 @@ namespace Lab2
 
             if (type.Equals("weather"))
             {
-                weatherProgram(myList, nameValue, scoreValue);
+                computeData(myList, nameValue, scoreValue, 0, 1, 2, 0);
+                // weatherProgram(myList, nameValue, scoreValue);
             }
             else
             {
-                footballProgram(myList, nameValue, scoreValue);
+                computeData(myList, nameValue, scoreValue, 8, 6, 8, 1);
+                // footballProgram(myList, nameValue, scoreValue);
             }
         }
 
-        public void weatherProgram(ArrayList weatherList, StringBuilder nameValue, int scoreValue)
+        public void computeData(ArrayList myList, StringBuilder nameValue, int scoreValue, int line1, int column1,
+            int column2, int nameCol)
         {
-            foreach (string[] name in weatherList)
+            foreach (string[] name in myList)
+            {
+                if (name.Length > line1)
+                {
+                    if (verifyNumber(name[line1]) && verifyNumber(name[column1].Replace("*", "")) &&
+                        verifyNumber(name[column2].Replace("*", "")))
+                    {
+                        int max = IntegerType.FromString(name[column1].Replace("*", ""));
+                        int min = IntegerType.FromString(name[column2].Replace("*", ""));
+                        if (Math.Abs(max - min) < scoreValue)
+                        {
+                            nameValue.Clear();
+                            nameValue.Append(name[nameCol]);
+                            scoreValue = Math.Abs(max - min);
+                        }
+                    }
+                }
+            }
+
+            Console.WriteLine("\t" + nameValue + " " + scoreValue);
+        }
+
+        public void weatherProgram(ArrayList myList, StringBuilder nameValue, int scoreValue)
+        {
+            foreach (string[] name in myList)
             {
                 if (name.Length > 0)
                 {
@@ -65,9 +92,10 @@ namespace Lab2
                         int against = IntegerType.FromString(name[8]);
                         if (Math.Abs(scored - against) < scoreValue)
                         {
-                            scoreValue = Math.Abs(scored - against);
                             nameValue.Clear();
                             nameValue.Append(name[1]);
+                            scoreValue = Math.Abs(scored - against);
+
                         }
                     }
                 }

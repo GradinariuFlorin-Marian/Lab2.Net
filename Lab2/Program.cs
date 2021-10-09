@@ -1,12 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.VisualBasic.CompilerServices;
 
 namespace Lab2
@@ -17,7 +10,7 @@ namespace Lab2
         {
             //First Program
             Console.WriteLine("First program: ");
-            string[] lines = System.IO.File.ReadAllLines("/Users/gradinariuflorin-marian/Desktop/weather.dat");
+            string[] lines = System.IO.File.ReadAllLines("../Lab2/Data/weather.dat");
             int mval = Int32.MaxValue;
             StringBuilder sb = new StringBuilder();
             foreach (string line in lines)
@@ -44,7 +37,7 @@ namespace Lab2
 
             Console.WriteLine("\nSecond program: ");
             //Second program
-            string[] lines2 = System.IO.File.ReadAllLines("/Users/gradinariuflorin-marian/Desktop/football.dat");
+            string[] lines2 = System.IO.File.ReadAllLines("../Lab2/Data/football.dat");
             int minscore = Int32.MaxValue;
             StringBuilder teamName = new StringBuilder();
             foreach (string line in lines2)
@@ -68,9 +61,9 @@ namespace Lab2
 
             Console.WriteLine("\t" + teamName + " " + minscore);
             Console.WriteLine("\nDry code 1:");
-            new DryFusion("/Users/gradinariuflorin-marian/Desktop/weather.dat", "weather");
+            new DryFusion("../Lab2/Data/weather.dat", "weather");
             Console.WriteLine("\nDry code 2:");
-            new DryFusion("/Users/gradinariuflorin-marian/Desktop/football.dat", "football");
+            new DryFusion("../Lab2/Data/football.dat", "football");
         }
 
         public static Boolean verifyNumber(String number)
