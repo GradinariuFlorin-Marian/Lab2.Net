@@ -38,7 +38,7 @@ Process finished with exit code 0.
 
 #### Kata Questions
 - To what extent did the design decisions you made when writing the original programs make it easier or harder to factor out common code?
-    - Answear: 
+    - Answear: The way that we wrote the code in the original programs helped us to factor out common code, because we saw that the statements were close to eachother, and so                  was the solutions.
 
 
 - Was the way you wrote the second program influenced by writing the first?
@@ -46,4 +46,5 @@ Process finished with exit code 0.
 
 
 - Is factoring out as much common code as possible always a good thing? Did the readability of the programs suffer because of this requirement? How about the maintainability?
-    - Answear:
+    - Answear: Not really. Sometimes is better to rewrite the code, if the refactorization affects the readability and makes the code hard to be understood by other programmers. 
+               The maintainability is not so affected by the factorization as readability is. Of course, a good programmer must find a way to write a code that is as dry as                    possible, easy to read, and maintainable.
